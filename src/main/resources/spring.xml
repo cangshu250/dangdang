@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--开启包扫描-->
+    <context:component-scan base-package="com.zzy.*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:property-placeholder location="classpath:/jdbc.properties"></context:property-placeholder>
+
+    <!--创建数据源对象-->
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+            <property name="driverClassName" value="${driverClassName}"></property>
+            <property name="url" value="${url}"></property>
+            <property name="username" value="${user}"></property>
+            <property name="password" value="${password}"></property>
+
+        </bean>
+    <!--创建sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:com/zzy/mapper/*.xml"/>
+        <property name="typeAliasesPackage" value="com.zzy.entity"/>
+    </bean>
+    <!--创建Dao对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.zzy.dao"></property>
+    </bean>
+    <!--创建事务管理-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+    <!--方法调用日志管理-->
+   <aop:config>
+        <aop:pointcut id="pc" expression="execution(* com.zzy.service.*.*(..))"/>
+        <aop:advisor advice-ref="methodNameLogAdvice" pointcut-ref="pc" />
+    </aop:config>
+</beans>
