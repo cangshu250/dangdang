@@ -37,6 +37,13 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
         <property name="basePackage" value="com.zzy.dao"></property>
     </bean>
+  <!--  &lt;!&ndash;创建验证码生成对象&ndash;&gt;
+    <bean class="com.zzy.util.CreateValidateCode" scope="prototype">
+        <property name="width" value="100"></property>
+        <property name="height" value="30"></property>
+        <property name="codeCount" value="5"></property>
+        <property name="lineCount" value="10"></property>
+    </bean>-->
     <!--创建事务管理-->
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>

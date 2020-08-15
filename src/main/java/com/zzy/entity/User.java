@@ -1,20 +1,23 @@
 package com.zzy.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable{
     private String id;
-    private int age;
-    private Date birthday;
+    private String status;
+    private String email;
+    private String password;
+    private String nickname ;
+    private String salt;
 
     public User() {
     }
 
-    public User(String id, int age, Date birthday) {
-
-        this.id = id;
-        this.age = age;
-        this.birthday = birthday;
+    public User(String email, String password, String nickname) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
     }
 
     public String getId() {
@@ -25,28 +28,55 @@ public class User {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public String getStatus() {
+        return status;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getEmail() {
+        return email;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", age=" + age +
-                ", birthday=" + birthday +
+                ", status='" + status + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }
