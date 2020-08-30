@@ -1,10 +1,11 @@
-<%@page contentType="text/html;charset=utf-8"%>
+<%@page contentType="text/html;charset=utf-8" isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>用户注册 - 当当网</title>
-		<link href="../css/login.css" rel="stylesheet" type="text/css" />
-		<link href="../css/page_bottom.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/page_bottom.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<%@include file="../common/head1.jsp"%>
@@ -20,10 +21,10 @@
 					<img src="${pageContext.request.contextPath}/images/login_success.jpg" />
 				</div>
 				<h5>
-					张三，欢迎加入当当网
+					${sessionScope.user.nickname}，欢迎加入当当网
 				</h5>
 				<h6>
-					请牢记您的登录邮件地址：zhangsan@163.com
+					请牢记您的登录邮件地址：${sessionScope.user.email}
 				</h6>
 
 				<ul>
@@ -35,13 +36,13 @@
 						<a href="#">我的当当</a>”查看并管理您的个人信息
 					</li>
 					<li>
-						<a href="../main/main.jsp">浏览并选购商品</a>
+						<a href="${pageContext.request.contextPath}/main/main.jsp">浏览并选购商品</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<c:import url="../common/foot1.jsp"></c:import>
 
-		<%@include file="../common/foot1.jsp"%>
 	</body>
 </html>
 

@@ -5,4 +5,10 @@
       <select id="selectByEmail" parameterType="java.lang.String" resultType="User">
           select id ,status,email,nickname,salt,password from d_user where email=#{email}
       </select>
+    <insert id="insertUser" >
+        insert into d_user(id,status,email,nickname,salt,password) VALUES (#{id},#{status},#{email},#{nickname},#{salt},#{password})
+    </insert>
+    <update id="updateUserStatus">
+        update d_user SET status=#{status} where id=#{id}
+    </update>
 </mapper>

@@ -1,4 +1,4 @@
-<%@page contentType="text/html;charset=utf-8"%>
+<%@page contentType="text/html;charset=utf-8" isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -6,7 +6,18 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../css/login.css" rel="stylesheet" type="text/css" />
 		<link href="../css/page_bottom.css" rel="stylesheet" type="text/css" />
-
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			$(function () {
+			    if($("#txtUsername").val().trim()!=null && $("#txtPassword").val().trim()!=null){
+					$("#btnSignCheck").click(function () {
+						$("#loginform").submit();
+                    })
+				}else{
+			        alert("请输入用户名或密码");
+				}
+            })
+		</script>
 	</head>
 	<body>
 
@@ -28,11 +39,11 @@
 							登录当当网
 						</h3>
 
-						<form method="post" action="" id="ctl00">
+						<form method="post" action="${pageContext.request.contextPath}/user/login" id="loginform">
 							<ul>
 								<li>
 									<span>请输入Email地址：</span>
-									<input type="text" name="name" id="txtUsername" class="textbox" />
+									<input type="text" name="email" id="txtUsername" class="textbox" />
 								</li>
 								<li>
 									<span class="blank">密码：</span>
@@ -40,7 +51,7 @@
 										class="textbox" />
 								</li>
 								<li>
-									<input type="submit" id="btnSignCheck" class="button_enter"
+									<input type="button" id="btnSignCheck" class="button_enter"
 										value="登 录" />
 
 
@@ -54,7 +65,7 @@
 							您还不是当当网用户？
 						</p>
 						<p class="set_up">
-							<a href="register_form.jsp">创建一个新用户&gt;&gt;</a>
+							<a href="${pageContext.request.contextPath}/user/register_form.jsp">创建一个新用户&gt;&gt;</a>
 						</p>
 					</div>
 				</div>

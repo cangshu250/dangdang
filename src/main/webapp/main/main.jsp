@@ -1,12 +1,15 @@
-<%@page contentType="text/html;charset=utf-8"%>
+<%@page contentType="text/html;charset=utf-8" isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>当当图书 – 全球最大的中文网上书店</title>
-		<link href="../css/book.css" rel="stylesheet" type="text/css" />
-		<link href="../css/second.css" rel="stylesheet" type="text/css" />
-		<link href="../css/secBook_Show.css" rel="stylesheet" type="text/css" />
-	
+		<link href="${pageContext.request.contextPath}/css/book.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/second.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/secBook_Show.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+
 	</head>
 	<body>
 		&nbsp;
@@ -15,13 +18,14 @@
 		<!-- 头部结束 -->
 		<div style="width: 962px; margin: auto;">
 			<a href="#" target="_blank"><img
-					src="../images/default/book_banner_081203.jpg" border="0" /> </a>
+					src="${pageConetext.request.contextPath}/images/default/book_banner_081203.jpg" border="0" /> </a>
 		</div>
 
 		<div class="book">
 
 			<!--左栏开始-->
-			<div id="left" class="book_left">
+			<div id="left" class="book_left" >
+				<%@include file="category.jsp"%> 
 			</div>
 			<!--左栏结束-->
 

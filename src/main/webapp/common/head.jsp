@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=utf-8"%>
-<link href="../css/book_head090107.css" rel="stylesheet" type="text/css" />
+<%@page contentType="text/html;charset=utf-8" isELIgnored="false" %>
+<link href="${pageContext.request.contextPath}/css/book_head090107.css" rel="stylesheet" type="text/css" />
 <div class="head_container">
 	<div class="head_welcome">
 		<div class="head_welcome_right">
@@ -13,10 +13,17 @@
 			</div>
 		</div>
 		<span class="head_toutext" id="logininfo">
-		<b>您好，欢迎光临当当网</b>
-		[&nbsp;<a href="" class="b">登出</a>&nbsp;]
-		[&nbsp;<a href="../user/login_form.jsp" class="b">登录</a>|<a
-			href="../user/register_form.jsp" class="b">注册</a>&nbsp;]
+
+			<c:if test="${sessionScope.user.nickname!=null}">
+				<b>您好，${sessionScope.user.nickname} &nbsp;欢迎光临当当网</b>
+				[&nbsp;<a href="${pageContext.request.contextPath}/user/user_logout" class="b">登出</a>&nbsp;]
+			</c:if>
+			<c:if test="${sessionScope.user.nickname==null}">
+				[&nbsp;<a href="${pageContext.request.contextPath}/user/login_form.jsp" class="b">登录</a>|<a
+				href="${pageContext.request.contextPath}/user/register_form.jsp" class="b">注册</a>&nbsp;]
+			</c:if>
+
+
 		</span>
 	</div>
 	<div class="head_head_list">
